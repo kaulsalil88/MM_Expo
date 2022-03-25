@@ -5,7 +5,7 @@
  */
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
@@ -18,15 +18,28 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import {ActionLibrary, IActionLibraryConfig} from "@mosaic-wellness/redux-action-library"
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
+      <ParentRootNavigator />
     </NavigationContainer>
   );
+}
+
+function ParentRootNavigator(){
+  const navigation = useNavigation()
+  const config = React.useMemo(()=>createConfiuguration(navigation), [])
+  console.log("HOOOOOOOHHHHHHAAAAA")
+  return (
+    <ActionLibrary config={config}>
+      <RootNavigator />
+    </ActionLibrary>
+
+  )
 }
 
 /**
@@ -104,4 +117,34 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
+const noop = (...args:any) => null
+function createConfiuguration(navigation:any):IActionLibraryConfig {
+  return ({
+    analytics: {
+      push: noop,
+      trigger: noop,
+      triggerCart: {
+        discount: noop,
+        hydration: noop,
+        update: noop
+      },
+      triggerThankYouOrder: noop
+    },
+    environment: {
+      baseUrl: () => "",
+      toast: noop
+    },
+    platform: "MOBILE",
+    router: {
+      back: () => navigation.goBack(),
+      currentPath: () => "",
+      push: (path) => navigation.navigate(path)
+    },
+    storage: {
+      getItem: () =>  Promise.reject(),
+      setItem: () => Promise.reject()
+    }
+  })
 }
