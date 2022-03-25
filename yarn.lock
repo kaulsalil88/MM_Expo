@@ -1704,10 +1704,10 @@
     react-native-web "~0.13.12"
     react-star-ratings "^2.3.0"
 
-"@mosaic-wellness/redux-action-library@0.11.15":
-  version "0.11.15"
-  resolved "https://npm.pkg.github.com/download/@mosaic-wellness/redux-action-library/0.11.15/42ef412d993e432a9f8f8651ece88f4d844d2281c069ca299cc0bc70e7020f4b#48a85e7c61d9461edfe92fd0f893423ab3c7e82a"
-  integrity sha512-1bzjekHZyEmJ8M9ntx56hRoR9aX82jbkg2YSSPNmIiufxEE13Nk986fJ3pUcFqL1ZB4noB6ZhDksBAaW9HQ2OA==
+"@mosaic-wellness/redux-action-library@^0.11.20":
+  version "0.11.20"
+  resolved "https://npm.pkg.github.com/download/@mosaic-wellness/redux-action-library/0.11.20/4d7b0b6173cf0fd8c160c825d37c1c6840848b83f7be2b4ea4bbbef30455f5a9#c49867af6fe1918395b9d52a73dd036150ebd616"
+  integrity sha512-9cub8YushwpnmiD3R3zx2SD2nLGiOU6TY6UkCk2/qZuKLI3dJuZmgJDNiynvug9ghlZsPj6LceVNRfqRExIlqA==
   dependencies:
     axios "^0.24.0"
     axios-retry "^3.2.4"
