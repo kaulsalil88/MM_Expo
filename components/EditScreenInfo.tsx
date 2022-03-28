@@ -38,6 +38,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           </Text>
         </TouchableOpacity>
       </View>
+      
     </View>
   );
 }

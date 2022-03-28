@@ -18,7 +18,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import {ActionLibrary, IActionLibraryConfig} from "@mosaic-wellness/redux-action-library"
+import {ActionLibrary, IActionLibraryConfig,useUserStore} from "@mosaic-wellness/redux-action-library"
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -33,12 +33,10 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 function ParentRootNavigator(){
   const navigation = useNavigation()
   const config = React.useMemo(()=>createConfiuguration(navigation), [])
-  console.log("HOOOOOOOHHHHHHAAAAA")
   return (
     <ActionLibrary config={config}>
       <RootNavigator />
     </ActionLibrary>
-
   )
 }
 
